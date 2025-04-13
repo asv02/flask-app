@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,redirect,url_for
 app = Flask(__name__,template_folder='templates')
 
 @app.route('/')
@@ -15,6 +15,14 @@ def login():
 @app.template_filter('reverse_string')
 def reverseString(s):
     return s[::-1]
+
+@app.route('/other_dynamic_url')
+def other():
+    return "Dynamic URL Endpoint"
+
+@app.route('/redirect_other_url')
+def redirect_url():
+    return redirect(url_for('other'))
 
 if __name__ == '__main__':
     app.run(debug=True,host='127.0.0.1',port=5500)

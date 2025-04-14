@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+{%block title%} Title {%endblock%}
+{%block content%}
+
+<form method="POST" action="{{url_for('signup')}}">
+<input type="text" name="username" placeholder="username"><br>
+<input type="password" name="password" placeholder="password"><br>
+<input type="submit" value="login">
+</form>
+
+<form method = 'POST' action="{{url_for('file_uploading')}}" enctype="multipart/form-data">
+ <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/plain"><br>
+ <input type="submit" value="File Upload"><br>
+</form>
+
+<form method = 'POST' action="{{url_for('file_downloading')}}" enctype="multipart/form-data">
+ <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/plain"><br>
+ <input type="submit" value="File Upload"><br>
+</form>
+
+
+{%endblock%}

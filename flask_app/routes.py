@@ -1,6 +1,5 @@
-from flask import Flask, request, render_template,redirect,url_for
-app = Flask(__name__,template_folder='templates')
-
+from flask_app import app
+from flask import render_template,request,redirect,url_for
 @app.route('/')
 def home():
     value1 = 20
@@ -23,6 +22,3 @@ def other():
 @app.route('/redirect_other_url')
 def redirect_url():
     return redirect(url_for('other'))
-
-if __name__ == '__main__':
-    app.run(debug=True,host='127.0.0.1',port=5500)

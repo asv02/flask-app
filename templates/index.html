@@ -1,0 +1,17 @@
+{%extends "base.html"%}
+{%block title%}Peoples Registered{%endblock%}
+{%block content%}
+    <h2>Registered People</h2>
+     <ul>
+          {% for item in People %}
+          <li>{{ item }}</li>
+          {% endfor %}
+     </ul>  
+   
+     <form action="{{url_for('register_user')}}" method="post">
+          name:<input type="text" name="name"><br>
+          Department:<input type="text" name="department"><br>
+          Job:<input type="text" name="job"><br>
+          <input type="submit" value="Register">
+     </form>
+{%endblock%}

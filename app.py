@@ -1,28 +1,16 @@
-from flask import Flask, request, render_template,redirect,url_for
-app = Flask(__name__,template_folder='templates')
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
-@app.route('/')
-def home():
-    value1 = 20
-    value2 = "Template value2"
-    return render_template('home.html',value1=value1,value2=value2)
 
-@app.route('/api/auth/login')
-def login():
-    greet = request.args.get('greet')
-    return str(dir(request))
+db = SQLAlchemy()
 
-@app.template_filter('reverse_string')
-def reverseString(s):
-    return s[::-1]
+def create_app():
+    app = Flask(__name__,template_folder='templates')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testdb.db'
+    db.init_app(app)
+    from routes import register_routes
+    register_routes(app,db) 
+    migrate = Migrate(app,db)
 
-@app.route('/other_dynamic_url')
-def other():
-    return "Dynamic URL Endpoint"
-
-@app.route('/redirect_other_url')
-def redirect_url():
-    return redirect(url_for('other'))
-
-if __name__ == '__main__':
-    app.run(debug=True,host='127.0.0.1',port=5500)
+    return app 

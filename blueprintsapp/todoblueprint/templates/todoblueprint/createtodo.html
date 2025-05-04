@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+
+{%block title%}
+Create Todo
+{%endblock%}
+
+{%block content%}
+<h1>Create TODO</h1>
+<form action="{{url_for('todoblueprint.create')}}" method="post">
+    Task: <input type="text" name="task">
+    Description: <input type="text" name="description">
+    Status: <input type="text" name="status">
+    <input type="submit" value="Create">
+</form>
+{%endblock%}
